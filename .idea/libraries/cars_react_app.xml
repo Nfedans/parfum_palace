@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="cars_react_app">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/cars_react_app.zip!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
