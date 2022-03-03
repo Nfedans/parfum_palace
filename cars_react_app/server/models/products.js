@@ -2,7 +2,7 @@ const mongoose = require(`mongoose`)
 
 let imagesSchema = new mongoose.Schema(
     {
-        filename:{type:[]}
+        filename:{type: String}
     })
 
 let ProductSubSchema = new mongoose.Schema(

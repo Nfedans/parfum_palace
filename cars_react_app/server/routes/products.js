@@ -32,7 +32,7 @@ const fs = require('fs')
 const multer  = require('multer')
 var upload = multer({dest: `${process.env.UPLOADED_FILES_FOLDER}`})
 
-
+const emptyFolder = require('empty-folder')
 
 
 
@@ -43,17 +43,20 @@ var upload = multer({dest: `${process.env.UPLOADED_FILES_FOLDER}`})
 router.get(`/products`, (req, res) =>
 {
 
-    console.log("ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc");
-
     productsModel.find((error, data) => {
             console.log(`products ${data}`)
             res.json(data)
+            if(error)
+            {
+                console.log("EEEEERRRROOOOORRRRRRRRRR")
+                console.log(error)
+            }
         })
 
 
 })
 
-router.get(`/products/photo/:filename`, (req, res) =>
+router.get(`/products/image/:filename`, (req, res) =>
 {
     fs.readFile(`${process.env.UPLOADED_FILES_FOLDER}/${req.params.filename}`, 'base64', (err, fileData) =>
     {
@@ -91,7 +94,7 @@ router.get(`/products/:id`, (req, res) =>
 
 
 //  Add new item to products JSON                    *****JWT STYLE*****
-router.post(`/products`, upload.array("productsPhotos", parseInt(process.env.MAX_NUMBER_OF_UPLOAD_FILES_ALLOWED)), (req, res) =>
+router.post(`/products`, upload.array("productsImages", parseInt(process.env.MAX_NUMBER_OF_UPLOAD_FILES_ALLOWED)), (req, res) =>
 {
     
              
@@ -112,11 +115,11 @@ router.post(`/products`, upload.array("productsPhotos", parseInt(process.env.MAX
                 
 
                     // add the car's photos to the carDetails JSON object
-                    productsDetails.photos = []
+                    productsDetails.images = []
 
                     req.files.map((file, index) =>
                     {
-                        productsDetails.photos[index] = {filename:`${file.filename}`}
+                        productsDetails.images[index] = {filename:`${file.filename}`}
                     })
 
 

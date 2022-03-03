@@ -13,6 +13,8 @@ import {SERVER_HOST} from "../config/global_constants"
 
 export default class Redirector extends Component
 {
+    mounted = false;
+    mountStatus = false;
     
     constructor(props)
     {
@@ -23,8 +25,16 @@ export default class Redirector extends Component
         }
     }
 
+    forceCompMount()
+    {
+        this.componentDidMount()
+        this.componentWillUnmount()
+    }
+
     componentDidMount()
     {
+        this.mounted = true;
+
         axios.get(`${SERVER_HOST}/products`)
             .then(res =>
             {
@@ -36,17 +46,28 @@ export default class Redirector extends Component
                     }
                     else
                     {
-                        console.log("Records read in ")
+                    if(this.mounted){
+                        //console.log("Records read in ")
+                        this.mountStatus = true;
+                        console.log(res.data)
                         this.setState({products: res.data})
+                        
+                        
+                    }
                     }
                 }
                 else
                 {
                     console.log("Record not found")
+                    console.log("Record not found")
                 }
             })
 
     }
+
+    componentWillUnmount() {
+        this.mounted = false;
+      }
 
 
     render()
@@ -56,9 +77,29 @@ export default class Redirector extends Component
 
         // <Redirect to="/HomeTest"/>
 
+        /*
+            <Redirect to={{
+                pathname: "/Products",
+                state: { products: this.state.products }
+                }}/>
+        */
+
+
+            console.log(this.state.products)
+
         return (
             <div>
-               <Redirect to="/Products"/>
+               
+               {this.mountStatus 
+               
+               ? <Redirect to={{
+                pathname: "/Products",
+                state: { products: this.state.products }
+                }}/>
+               
+               
+               : null}
+
             </div>
         )
     }

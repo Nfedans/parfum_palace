@@ -23,9 +23,9 @@ export default class AddPerfumeReal extends Component
             gender:"",
             selectedFiles: null,
             products: [{
-                size : "4",
-                price : "4",
-                stockLevel : "4"
+                size : "",
+                price : "",
+                stockLevel : ""
                 }],
             notes: {
                 topNotes : ["pepper", "yuzu", "nutmeg"],
@@ -124,7 +124,7 @@ export default class AddPerfumeReal extends Component
         {
             for(let i = 0; i < this.state.selectedFiles.length; i++)
             {
-                formData.append("productsPhotos", this.state.selectedFiles[i])
+                formData.append("productsImages", this.state.selectedFiles[i])
             }
         }
 
@@ -177,7 +177,7 @@ export default class AddPerfumeReal extends Component
     {
         return (
             <div className="form-container">
-                {this.state.redirectToProducts ? <Redirect to="/Products"/> : null}
+                {this.state.redirectToProducts ? <Redirect to="/"/> : null}
 
                 <Form>
                     <Form.Group controlId="brand">

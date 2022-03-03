@@ -562,3 +562,13 @@ div .text_para
     font-size: 3vh;
     font-weight: 400;
 }
+
+
+
+/*      Experimental dispall css        */
+.big_div
+{
+    background-color: black;
+    position: relative;
+    color:#eee;
+}

@@ -6,15 +6,19 @@ import {BrowserRouter, Switch, Route} from "react-router-dom"
 
 
 import Banner from "./Banner"
+import DisplayProducts from "./DisplayProducts"
 import Header from "./Header"
 import HeadParagraph from "./HeadParagraph"
 import ResultManipulator from "./ResultManipulator"
 
+import axios from "axios"
+import {SERVER_HOST} from "../config/global_constants"
 
 
 
 export default class HomeTest extends Component
 {
+    mounted = false;
 
     constructor(props)
     {
@@ -29,9 +33,51 @@ export default class HomeTest extends Component
 
         this.state = {
             banner:true,
-            paragraph: "Home"
+            paragraph: "Home",
+            products:[]
         }
     }
+
+
+    componentDidMount()
+    {
+        this.mounted = true;
+
+        axios.get(`${SERVER_HOST}/products`)
+            .then(res =>
+            {
+                if(res.data)
+                {
+                    if (res.data.errorMessage)
+                    {
+                        console.log(res.data.errorMessage)
+                    }
+                    else
+                    {
+                    if(this.mounted){
+                        //console.log("Records read in ")
+                       
+                        console.log(res.data)
+                        this.setState({products: res.data})
+                    }
+                    else{
+                        console.log("We're unmounted sham")
+                    }
+                    }
+                }
+                else
+                {
+                    console.log("Record not found")
+                }
+            })
+
+    }
+    componentWillUnmount() {
+        this.mounted = false;
+      }
+
+
+
 
     bannerHandler()
     {
@@ -81,6 +127,9 @@ export default class HomeTest extends Component
     {
 
     console.log(this.state.paragraph)
+    console.log(this.state.products)
+    //<DisplayProducts passState={this.props.passState}/>
+    console.log(this.props.location.state.products)
 
 
         return (
@@ -98,6 +147,8 @@ export default class HomeTest extends Component
             />
             <ResultManipulator/>
             <HeadParagraph msg={this.state.paragraph}/>
+            <DisplayProducts products={this.state.products}/>
+            
 
             </div>
         )
