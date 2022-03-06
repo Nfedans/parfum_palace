@@ -16,7 +16,7 @@ let ProductSubSchema = new mongoose.Schema(
     }
 )
 
-let notes = new mongoose.Schema(
+let notesSchema = new mongoose.Schema(
     {
         topNotes : {type: []},
 	    heartNotes : {type: []},
@@ -32,8 +32,8 @@ let ProductSchema = new mongoose.Schema(
         description: {type: String, required:true},
         gender: {type: String, required:true},
         images: [imagesSchema],
-        products: [ProductSubSchema]
-	    //notes: notes
+        products: [ProductSubSchema],
+	    notes: notesSchema
     },
     {
         collection: `products`

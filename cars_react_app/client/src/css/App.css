@@ -191,7 +191,7 @@ div .head
     display: flex;
     background-color: #53545C;
     position:relative;
-    width: 100%;
+    width: 100vw;
    
    
     z-index: 1;
@@ -568,7 +568,13 @@ div .text_para
 /*      Experimental dispall css        */
 .big_div
 {
-    background-color: black;
+    display: flex;
+   
+    background-color: gray;
     position: relative;
+    order: 4;
     color:#eee;
+    width: 90vw;
 }
+
+::-webkit-scrollbar{display:none;} 

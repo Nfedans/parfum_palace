@@ -76,20 +76,28 @@ componentDidMount()
                         </div>
 
 
+                        <div>
+                        {this.props.product.images.map(image => <img key={image._id} id={image._id} alt=""/>)}
+                    </div>
+
+
 */
+
+
     render() 
     {
 
        console.log(this.props.product.brand)
 
+       let firstImageDetails = this.props.product.images[0]
+
         return (
                 <div>
-                      <div>{this.props.product.brand}</div>
-                        <div>{this.props.product.name}</div>
-                       
-                        <div>
-                        {this.props.product.images.map(image => <img key={image._id} id={image._id} alt=""/>)}
-                    </div>
+                      <div><img key={firstImageDetails._id} id={firstImageDetails._id} alt=""/></div>
+                      <div>{this.props.product.brand} {this.props.product.name}</div>
+                      
+                      
+                        
                        
                 </div>
                );

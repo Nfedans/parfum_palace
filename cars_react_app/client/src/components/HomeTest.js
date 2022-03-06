@@ -129,7 +129,7 @@ export default class HomeTest extends Component
     console.log(this.state.paragraph)
     console.log(this.state.products)
     //<DisplayProducts passState={this.props.passState}/>
-    console.log(this.props.location.state.products)
+    //console.log(this.props.location.state.products)
 
 
         return (

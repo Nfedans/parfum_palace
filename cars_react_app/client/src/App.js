@@ -12,7 +12,7 @@ import HomeTest from "./components/HomeTest"
 import ResultManipulator from "./components/ResultManipulator"
 import HeadParagraph from "./components/HeadParagraph"
 import Redirector from "./components/Redirector"
-import AddPerfumeReal from "./components/AddPerfumeReal"
+import AddPerfume from "./components/AddPerfume"
 import DisplayProducts from "./components/DisplayProducts"
 import IndividualProduct from "./components/IndividualProduct"
 
@@ -38,7 +38,7 @@ export default class App extends Component
                     <Route exact path="/Banner" component={Banner} />
                     <Route exact path="/" component={HomeTest} />
                     <Route exact path="/Products" component={HomeTest} />
-                    <Route exact path="/AddProducts" component={AddPerfumeReal} />
+                    <Route exact path="/AddProducts" component={AddPerfume} />
                     <Route exact path="/ResultManipulator" component={ResultManipulator} />
                     <Route exact path="/HeadParagraph" component={HeadParagraph} />
                     <Route exact path="/ProductDisplay" component={DisplayProducts} />
