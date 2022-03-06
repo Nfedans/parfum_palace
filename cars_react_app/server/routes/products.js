@@ -162,7 +162,7 @@ router.post(`/products`, upload.array("productsImages", parseInt(process.env.MAX
 
 
 
-
+                    productsDetails.notes = JSON.parse(req.body.notes)
                    
 
                     //productsDetails.products = req.body.products

@@ -384,6 +384,8 @@ export default class AddPerfume extends Component
 
                 formData.append("products", [JSON.stringify(this.state.products)])
 
+                formData.append("notes", JSON.stringify(this.state.notes));
+
 
         const valuez = [...formData.entries()]
   
